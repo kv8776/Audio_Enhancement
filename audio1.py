@@ -3,8 +3,8 @@ from pedalboard import *
 import noisereduce as nr
 
 sr=44100
-with AudioFile('audios/audio1.wav').resampled_to(sr) as f:
-    audio = f.read(f.frames)
+with AudioFile('Audio_Enhancement/audios/audio1.wav').resampled_to(sr) as f:
+  audio = f.read(f.frames)
 
 reduced_noise = nr.reduce_noise(y=audio, sr=sr, stationary=True, prop_decrease=0.75)
 
@@ -18,7 +18,7 @@ board = Pedalboard([
 effected = board(reduced_noise, sr)
 
 
-with AudioFile('audios/audio1_enhenced.wav', 'w', sr, effected.shape[0]) as f:
+with AudioFile('Audio_Enhancement/audios/audio1_enhenced.wav', 'w', sr, effected.shape[0]) as f:
   f.write(effected)
 
 
